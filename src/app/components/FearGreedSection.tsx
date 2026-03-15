@@ -38,10 +38,10 @@ export function FearGreedSection() {
   }, [fngPoints, chartData]);
 
   return (
-    <section className="max-w-[1400px] mx-auto px-6 py-16">
-      <h2 className="text-4xl text-white mb-8">Fear & Greed Sentiment</h2>
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 sm:py-16 min-w-0">
+      <h2 className="text-3xl sm:text-4xl text-white mb-6 sm:mb-8">Fear & Greed Sentiment</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 min-w-0">
         <PriceChart
           data={chartData}
           timeframe={timeframe}

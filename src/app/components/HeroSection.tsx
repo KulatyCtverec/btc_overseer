@@ -25,17 +25,17 @@ export function HeroSection() {
   const { data: chartData, loading: chartLoading } = useBitcoinMarketChart(timeframe);
 
   return (
-    <section className="max-w-[1400px] mx-auto px-6 py-16">
-      <div className="grid lg:grid-cols-2 gap-12 items-start">
-        <div className="space-y-8">
-          <div>
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 sm:py-16 min-w-0">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start min-w-0">
+        <div className="space-y-6 sm:space-y-8 min-w-0">
+          <div className="min-w-0">
             <p className="text-gray-500 mb-2">Bitcoin Price</p>
             {loading ? (
-              <Skeleton className="h-20 w-64" />
+              <Skeleton className="h-14 sm:h-20 w-48 sm:w-64" />
             ) : error ? (
               <p className="text-red-500">{error}</p>
             ) : data ? (
-              <h1 className="text-7xl text-white mb-6 tabular-nums">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl text-white mb-4 sm:mb-6 tabular-nums min-w-0">
                 <AnimatedPrice value={data.currentPrice} />
               </h1>
             ) : null}
@@ -59,11 +59,11 @@ export function HeroSection() {
           )}
 
           {data && !loading && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between py-4 border-b border-[#1a1a1a]">
-                <span className="text-gray-400">24h Change</span>
+            <div className="space-y-4 min-w-0">
+              <div className="flex items-center justify-between gap-3 py-4 border-b border-[#1a1a1a] min-w-0">
+                <span className="text-gray-400 shrink-0">24h Change</span>
                 <span
-                  className={`flex items-center gap-2 ${
+                  className={`flex items-center gap-2 shrink-0 tabular-nums ${
                     data.priceChangePercentage24h != null
                       ? data.priceChangePercentage24h >= 0
                         ? "text-green-500"
@@ -87,20 +87,20 @@ export function HeroSection() {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between py-4 border-b border-[#1a1a1a]">
-                <span className="text-gray-400">All-Time High</span>
-                <span className="text-white">{formatPrice(data.ath)}</span>
+              <div className="flex items-center justify-between gap-3 py-4 border-b border-[#1a1a1a] min-w-0">
+                <span className="text-gray-400 shrink-0">All-Time High</span>
+                <span className="text-white tabular-nums truncate text-right">{formatPrice(data.ath)}</span>
               </div>
 
-              <div className="flex items-center justify-between py-4 border-b border-[#1a1a1a]">
-                <span className="text-gray-400">Days Since Halving</span>
-                <span className="text-[#F7931A]">{daysSinceHalving()}</span>
+              <div className="flex items-center justify-between gap-3 py-4 border-b border-[#1a1a1a] min-w-0">
+                <span className="text-gray-400 shrink-0">Days Since Halving</span>
+                <span className="text-[#F7931A] tabular-nums shrink-0">{daysSinceHalving()}</span>
               </div>
             </div>
           )}
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 min-w-0">
           <PriceChart
             data={chartData}
             timeframe={timeframe}

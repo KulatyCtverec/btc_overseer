@@ -19,7 +19,7 @@ export function ChartSectionFooter({
 }: ChartSectionFooterProps) {
   return (
     <div
-      className={`flex items-center gap-4 ${
+      className={`flex flex-wrap items-center gap-3 sm:gap-4 min-w-0 ${
         hideTimeframeSelector ? "justify-end" : "justify-between"
       }`}
     >
@@ -27,7 +27,7 @@ export function ChartSectionFooter({
         <TimeframeSelector selected={selected} onChange={onChange} />
       )}
       {dataSource && (
-        <p className="text-xs text-gray-500 shrink-0">
+        <p className="text-xs text-gray-500 min-w-0 break-words">
           {dataSource.label} from{" "}
           <a
             href={dataSource.url}

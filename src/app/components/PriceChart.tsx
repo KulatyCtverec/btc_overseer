@@ -60,7 +60,7 @@ export function PriceChart({
   });
 
   const chartWrapper =
-    "bg-[#0f0f0f] rounded-2xl p-6 border border-[#1a1a1a] shadow-xl min-h-[348px]";
+    "bg-[#0f0f0f] rounded-2xl p-4 sm:p-6 border border-[#1a1a1a] shadow-xl min-h-[280px] sm:min-h-[348px] min-w-0 w-full";
 
   if (loading) {
     return (
@@ -83,8 +83,9 @@ export function PriceChart({
 
   return (
     <div className={chartWrapper}>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={chartData}>
+      <div className="w-full" style={{ height: 300, minHeight: 300 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={chartData} margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
           <defs>
             {hasFng && (
               <linearGradient
@@ -220,6 +221,7 @@ export function PriceChart({
           />
         </LineChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -49,11 +49,11 @@ export function PartyIndexSection() {
   const data = computeVolatilityAndPrice(chartData);
 
   return (
-    <section className="max-w-[1400px] mx-auto px-6 py-16">
-      <h2 className="text-4xl text-white mb-8">Party Index</h2>
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 sm:py-16 min-w-0">
+      <h2 className="text-3xl sm:text-4xl text-white mb-6 sm:mb-8">Party Index</h2>
 
-      <div className="bg-[#0f0f0f] rounded-2xl p-8 border border-[#1a1a1a] shadow-xl space-y-6">
-        <div className="flex items-center gap-6 text-sm">
+      <div className="bg-[#0f0f0f] rounded-2xl p-4 sm:p-8 border border-[#1a1a1a] shadow-xl space-y-6 min-w-0 overflow-hidden">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <span className="text-gray-400">Low Volatility</span>

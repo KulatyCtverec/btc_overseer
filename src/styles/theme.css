@@ -124,14 +124,23 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
   html {
     font-size: var(--font-size);
     /* Offset scroll targets so sticky navbar does not cover section captions */
     scroll-padding-top: 5rem;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  #root {
+    min-height: 100%;
+    width: 100%;
   }
 
   h1 {
@@ -174,10 +183,6 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
-  }
-
-  svg.recharts-surface {
-    box-sizing: content-box;
   }
 
   svg.recharts-surface:focus,

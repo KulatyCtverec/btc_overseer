@@ -16,7 +16,7 @@ const PartyIndexSection = lazy(() =>
 
 function SectionFallback() {
   return (
-    <div className="max-w-[1400px] mx-auto px-6 py-16 min-h-[320px] flex items-center justify-center">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-16 min-h-[320px] flex items-center justify-center min-w-0">
       <div className="bg-[#1a1a1a] rounded animate-pulse w-full max-w-2xl h-64" aria-hidden />
     </div>
   );
@@ -27,10 +27,10 @@ export default function App() {
 
   return (
     <ChartDataProvider>
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen min-w-0 w-full bg-black text-white">
         <Header onMenuClick={() => setIsNavOpen(true)} />
 
-        <main>
+        <main className="overflow-x-hidden min-w-0">
           <div id="hero">
             <HeroSection />
           </div>
