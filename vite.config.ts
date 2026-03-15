@@ -1,12 +1,21 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
-import babel from "@rolldown/plugin-babel";
+import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
   optimizeDeps: {
     include: ["react-is"],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("recharts")) return "recharts";
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
   },
   server: {
     proxy: {
@@ -23,8 +32,11 @@ export default defineConfig({
     },
   },
   plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] }),
+    react({
+      babel: {
+        plugins: ["babel-plugin-react-compiler"],
+      },
+    }),
     tailwindcss(),
   ],
 });
