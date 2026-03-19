@@ -29,6 +29,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/fear-greed/, ""),
       },
+      "/api/blockchain-stats": {
+        target: "https://api.blockchain.info",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/blockchain-stats/, ""),
+      },
     },
   },
   plugins: [

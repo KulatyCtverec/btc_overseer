@@ -9,7 +9,7 @@ export function FourYearCycleSection() {
 
   return (
     <section className="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 sm:py-16 min-w-0">
-      <h2 className="text-3xl sm:text-4xl text-white mb-6 sm:mb-8">
+      <h2 className="text-3xl sm:text-4xl text-foreground mb-6 sm:mb-8">
         Bitcoin&apos;s Four Year Cycles
       </h2>
 

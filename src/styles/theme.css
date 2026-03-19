@@ -39,6 +39,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Depth surface scale (light mode) */
+  --surface-base: #ffffff;
+  --surface-elevated: oklch(0.99 0 0);
+  --surface-recessed: oklch(0.96 0.002 264);
+  --surface-overlay: oklch(1 0 0);
+
+  /* Dual shadow system (light: dark top edge, light bottom) */
+  --shadow-depth-1:
+    0 1px 2px rgba(0, 0, 0, 0.06), 0 -2px 8px rgba(255, 255, 255, 0.5);
+  --shadow-depth-2:
+    0 2px 4px rgba(0, 0, 0, 0.08), 0 -4px 12px rgba(255, 255, 255, 0.6);
+  --shadow-depth-3:
+    0 4px 12px rgba(0, 0, 0, 0.1), 0 -6px 20px rgba(255, 255, 255, 0.7);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .dark {
@@ -76,6 +91,21 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  /* Depth surface scale (dark mode) */
+  --surface-base: oklch(0.12 0 0);
+  --surface-elevated: oklch(0.16 0 0);
+  --surface-recessed: oklch(0.2 0 0);
+  --surface-overlay: oklch(0.24 0 0);
+
+  /* Dual shadow system (dark: light top edge, dark bottom) */
+  --shadow-depth-1:
+    0 -1px 2px rgba(255, 255, 255, 0.06), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-depth-2:
+    0 -1px 3px rgba(255, 255, 255, 0.08), 0 6px 16px rgba(0, 0, 0, 0.4);
+  --shadow-depth-3:
+    0 -2px 4px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @theme inline {
@@ -117,6 +147,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface-base: var(--surface-base);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-recessed: var(--surface-recessed);
+  --color-surface-overlay: var(--surface-overlay);
+  --shadow-depth-1: var(--shadow-depth-1);
+  --shadow-depth-2: var(--shadow-depth-2);
+  --shadow-depth-3: var(--shadow-depth-3);
+  --shadow-inset: var(--shadow-inset);
 }
 
 @layer base {
@@ -186,8 +224,15 @@
   }
 
   svg.recharts-surface:focus,
-  .recharts-wrapper:focus {
-    outline: none;
+  svg.recharts-surface:focus-visible,
+  .recharts-wrapper:focus,
+  .recharts-wrapper:focus-visible,
+  .recharts-responsive-container:focus,
+  .recharts-responsive-container:focus-visible,
+  .recharts-responsive-container *:focus,
+  .recharts-responsive-container *:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   .recharts-reference-area,

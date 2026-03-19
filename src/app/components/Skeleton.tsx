@@ -5,7 +5,7 @@ interface SkeletonProps {
 export function Skeleton({ className = "" }: SkeletonProps) {
   return (
     <div
-      className={`bg-[#1a1a1a] rounded animate-pulse ${className}`}
+      className={`bg-surface-recessed rounded animate-pulse shadow-[var(--shadow-inset)] ${className}`}
       aria-hidden
     />
   );

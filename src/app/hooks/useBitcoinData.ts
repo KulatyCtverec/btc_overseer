@@ -1,13 +1,43 @@
+import { useEffect, useState } from "react";
 import { useChartData } from "../context/ChartDataContext";
+import { fetchBtcSupplyStats } from "../api/blockchainStats";
 
-const LAST_HALVING = new Date("2024-04-19").getTime();
+export function useBtcRemainingToMine(): {
+  remainingBtc: number | null;
+  loading: boolean;
+  error: string | null;
+} {
+  const [remainingBtc, setRemainingBtc] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export function daysSinceHalving(): number {
-  return Math.floor((Date.now() - LAST_HALVING) / (1000 * 60 * 60 * 24));
+  useEffect(() => {
+    let cancelled = false;
+    fetchBtcSupplyStats()
+      .then((stats) => {
+        if (!cancelled) {
+          setRemainingBtc(stats.remainingBtc);
+          setError(null);
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to fetch");
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { remainingBtc, loading, error };
 }
 
 export function useBitcoinMarketChart(
-  timeframe: import("../api/bitcoinCharts").BitcoinChartsTimeframe
+  timeframe: import("../api/bitcoinCharts").BitcoinChartsTimeframe,
 ) {
   const { data: dataByTimeframe, loading, error } = useChartData();
   const data = dataByTimeframe[timeframe] ?? [];
@@ -32,7 +62,9 @@ export function useBitcoinPriceFromCharts(): {
   const data: BitcoinPriceSummary | null =
     shortData.length > 0
       ? (() => {
-          const sorted = [...shortData].sort((a, b) => a.timestamp - b.timestamp);
+          const sorted = [...shortData].sort(
+            (a, b) => a.timestamp - b.timestamp,
+          );
           const last = sorted[sorted.length - 1]!;
           const prev = sorted.length >= 2 ? sorted[sorted.length - 2]! : null;
           const ath = Math.max(...allData.map((p) => p.price));

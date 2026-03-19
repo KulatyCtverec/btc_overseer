@@ -5,19 +5,28 @@ import { HeroSection } from "./components/HeroSection";
 import { SideNav } from "./components/SideNav";
 
 const FearGreedSection = lazy(() =>
-  import("./components/FearGreedSection").then((m) => ({ default: m.FearGreedSection }))
+  import("./components/FearGreedSection").then((m) => ({
+    default: m.FearGreedSection,
+  })),
 );
 const FourYearCycleSection = lazy(() =>
-  import("./components/FourYearCycleSection").then((m) => ({ default: m.FourYearCycleSection }))
+  import("./components/FourYearCycleSection").then((m) => ({
+    default: m.FourYearCycleSection,
+  })),
 );
 const PartyIndexSection = lazy(() =>
-  import("./components/PartyIndexSection").then((m) => ({ default: m.PartyIndexSection }))
+  import("./components/PartyIndexSection").then((m) => ({
+    default: m.PartyIndexSection,
+  })),
 );
 
 function SectionFallback() {
   return (
     <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-16 min-h-[320px] flex items-center justify-center min-w-0">
-      <div className="bg-[#1a1a1a] rounded animate-pulse w-full max-w-2xl h-64" aria-hidden />
+      <div
+        className="bg-surface-recessed rounded animate-pulse w-full max-w-2xl h-64"
+        aria-hidden
+      />
     </div>
   );
 }
@@ -27,7 +36,7 @@ export default function App() {
 
   return (
     <ChartDataProvider>
-      <div className="min-h-screen min-w-0 w-full bg-black text-white">
+      <div className="min-h-screen min-w-0 w-full bg-gradient-to-b from-surface-elevated to-surface-base text-foreground">
         <Header onMenuClick={() => setIsNavOpen(true)} />
 
         <main className="overflow-x-hidden min-w-0">
@@ -47,7 +56,7 @@ export default function App() {
             </Suspense>
           </div>
 
-          <div id="party-index">
+          <div id="volatility">
             <Suspense fallback={<SectionFallback />}>
               <PartyIndexSection />
             </Suspense>
